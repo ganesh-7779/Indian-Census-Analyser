@@ -23,5 +23,13 @@ public class StateCensusCodeAnalyserTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void GivenTheStateCensusCsvFile_IfDoesntExist_ShouldThrowCensusAnalyserException() throws IOException {
+        try {
+            int count = StateCodeAnalyser.openCsvBuilder(WRONG_FILE, StateCensus.class);
+        } catch ( CodeAnalyserException e) {
+            e.printStackTrace();
+            Assert.assertEquals(CodeAnalyserException.CodeExceptionType.NO_SUCH_FILE,e.type);
+        }
+    }
 }
-   

@@ -33,7 +33,7 @@ public class StateCodeAnalyser {
         } catch (CodeAnalyserException e){
             throw e;
         } catch (RuntimeException e){
-            throw new CodeAnalyserException(CodeAnalyserException.CensusExceptionType.DELIMITER_ISSUE,
+            throw new CodeAnalyserException(CodeAnalyserException.CodeExceptionType.DELIMITER_ISSUE,
                     "might be some error related to delimiter at record no. : " +(counter+1));
         }
         return counter;
@@ -51,14 +51,14 @@ public class StateCodeAnalyser {
             Iterator<Object> myIterator = csvToBean.iterator();
             return myIterator;
         } catch (NoSuchFileException e) {
-            throw new CodeAnalyserException(CodeAnalyserException.CensusExceptionType.NO_SUCH_FILE,
+            throw new CodeAnalyserException(CodeAnalyserException.CodeExceptionType.NO_SUCH_FILE,
                     "no such file exists. Please enter correct file");
         } catch (RuntimeException e){
-            throw new CodeAnalyserException(CodeAnalyserException.CensusExceptionType.INCORRECT_DATA_ISSUE,
+            throw new CodeAnalyserException(CodeAnalyserException.CodeExceptionType.INCORRECT_DATA_ISSUE,
                     "delimiter error at line 1 OR might be some error " +
                             "related to headers or incorrect extension / input file ");
         } catch (IOException e) {
-            throw new CodeAnalyserException(CodeAnalyserException.CensusExceptionType.SOME_OTHER_IO_EXCEPTION,
+            throw new CodeAnalyserException(CodeAnalyserException.CodeExceptionType.SOME_OTHER_IO_EXCEPTION,
                     "Some other IO related exception");
         }
     }
