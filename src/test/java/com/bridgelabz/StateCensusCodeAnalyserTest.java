@@ -35,10 +35,20 @@ public class StateCensusCodeAnalyserTest {
     @Test
     public void GivenTheStateCensusCsvFile_WhenCorrect_ButFileExtensionIncorrect_ShouldThrowCensusAnalyserException() throws IOException {
         try {
-            int count = StateCodeAnalyser.openCsvBuilder(STATECODES_CSVFILE, StateCensus.class);
+            int count = StateCodeAnalyser.openCsvBuilder(STATECENSUS_CSVFILE, StateCensus.class);
         } catch (CodeAnalyserException e) {
             e.printStackTrace();
             Assert.assertEquals(CodeAnalyserException.CodeExceptionType.INCORRECT_DATA_ISSUE, e.type);
+        }
+    }
+    @Test
+    public void GivenTheStateCensusCSVFile_WhenCorrect_ButDelimiterIncorrect_ReturnsCensusAnalyserException() throws IOException {
+        try {
+            int count = StateCodeAnalyser.openCsvBuilder(STATECODES_CSVFILE, StateCensus.class);
+        } catch (CodeAnalyserException e) {
+            e.printStackTrace();
+            Assert.assertEquals(CodeAnalyserException.CodeExceptionType.DELIMITER_ISSUE, e.type);
+
         }
     }
 }
