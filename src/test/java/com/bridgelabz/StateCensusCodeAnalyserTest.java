@@ -51,4 +51,13 @@ public class StateCensusCodeAnalyserTest {
 
         }
     }
+    @Test
+    public void whenCorrectCensusCSVFile_ButHeaderIncorrect_ShouldReturnFalse() throws IOException {
+        try {
+            int count = StateCodeAnalyser.openCsvBuilder(STATECODES_CSVFILE, StateCensus.class);
+        } catch (CodeAnalyserException e) {
+            e.printStackTrace();
+            Assert.assertEquals(CodeAnalyserException.CodeExceptionType.INCORRECT_DATA_ISSUE, e.type);
+        }
+    }
 }
