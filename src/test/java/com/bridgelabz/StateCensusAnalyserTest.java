@@ -29,5 +29,14 @@ public class StateCensusAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.CensusExceptionType.NO_SUCH_FILE, e.type);
         }
     }
+    @Test
+    public void GivenTheStateCensusCsvFile_WhenCorrect_ButFileExtensionIncorrect_ShouldThrowCensusAnalyserException() throws IOException {
+        try {
+            int count = StateCensusAnalyser.openCsvBuilder(STATECODES_CSVFILE, StateCensus.class);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+            Assert.assertEquals(CensusAnalyserException.CensusExceptionType.INCORRECT_DATA_ISSUE, e.type);
+        }
+    }
 }
 
