@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.io.IOException;
 
 public class StateCensusAnalyserTest {
-    public static final String STATECODES_CSVFILE = "D:\\fellowshipBreid\\indianCensusCsv\\src\\main\\resources\\IndiaStateCode.csv";
+    public static final String STATECODES_CSVFILE  = "D:\\fellowshipBreid\\indianCensusCsv\\src\\main\\resources\\IndiaStateCode.csv";
     public static final String STATECENSUS_CSVFILE = "D:\\fellowshipBreid\\indianCensusCsv\\src\\main\\resources\\IndiaStateCensusData.csv";
     public static final String WRONG_FILE = "useless.txt";
 
@@ -38,5 +38,16 @@ public class StateCensusAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.CensusExceptionType.INCORRECT_DATA_ISSUE, e.type);
         }
     }
-}
+        @Test
+        public void GivenTheStateCensusCSVFile_WhenCorrect_ButDelimiterIncorrect_ReturnsCensusAnalyserException() throws IOException {
+            try {
+                int count = StateCensusAnalyser.openCsvBuilder(STATECENSUS_CSVFILE, StateCensus.class);
+            } catch (CensusAnalyserException e) {
+                e.printStackTrace();
+                Assert.assertEquals(CensusAnalyserException.CensusExceptionType.DELIMITER_ISSUE, e.type);
+
+            }
+        }
+    }
+
 
